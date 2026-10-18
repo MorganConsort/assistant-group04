@@ -17,6 +17,7 @@
       background: #f3f4f6;
       color: #1f2937;
       font-family: Arial, sans-serif;
+      font-size: 15px;
     }
 
     main {
@@ -37,22 +38,104 @@
 
     header h1 {
       margin: 0 0 0.5rem;
+      font-size: 1.5rem;
     }
 
     header p {
       margin: 0;
+      font-size: 0.9rem;
     }
 
     .conversation {
       min-height: 240px;
       padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .message-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .user-row {
+      justify-content: flex-end;
+    }
+
+    .avatar {
+      display: grid;
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .assistant-avatar {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .user-avatar {
+      background: #1d4ed8;
+      color: #ffffff;
+    }
+
+    .message-bubble {
+      max-width: 78%;
+      padding: 0.75rem 0.9rem;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      line-height: 1.45;
     }
 
     .assistant-message {
-      max-width: 85%;
-      padding: 1rem;
       background: #e5e7eb;
-      border-radius: 10px;
+      border-bottom-left-radius: 4px;
+    }
+
+    .user-message {
+      background: #1d4ed8;
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .message-bubble p {
+      margin: 0;
+    }
+
+    .sender {
+      margin-bottom: 0.25rem !important;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .sources {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #9ca3af;
+      color: #374151;
+      font-size: 0.9rem;
+    }
+
+    .sources h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    .sources ol {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+
+    .source-detail {
+      display: block;
+      margin-top: 0.2rem;
+      color: #4b5563;
     }
 
     form {
@@ -63,6 +146,7 @@
     label {
       display: block;
       margin-bottom: 0.5rem;
+      font-size: 0.85rem;
       font-weight: bold;
     }
 
@@ -77,7 +161,8 @@
       padding: 0.75rem;
       border: 1px solid #9ca3af;
       border-radius: 6px;
-      font: inherit;
+      font-family: inherit;
+      font-size: 0.9rem;
     }
 
     input:focus {
@@ -91,7 +176,8 @@
       border-radius: 6px;
       background: #1d4ed8;
       color: #ffffff;
-      font: inherit;
+      font-family: inherit;
+      font-size: 0.9rem;
       font-weight: bold;
     }
 
@@ -103,7 +189,7 @@
     .status {
       margin: 0.75rem 0 0;
       color: #4b5563;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
 
     @media (max-width: 520px) {
@@ -126,8 +212,35 @@
       aria-label="Conversation"
       aria-live="polite"
     >
-      <div class="assistant-message">
-        Hello! Ask me where an office is or when it opens.
+      <div class="message-row user-row" aria-label="User message">
+        <div class="message-bubble user-message">
+          <p class="sender">You</p>
+          <p>Where is the Computational Thinking theory class?</p>
+        </div>
+        <div class="avatar user-avatar" aria-hidden="true">U</div>
+      </div>
+
+      <div class="message-row assistant-row" aria-label="Assistant message">
+        <div class="avatar assistant-avatar" aria-hidden="true">A</div>
+        <div class="message-bubble assistant-message">
+          <p class="sender">Assistant</p>
+          <p>
+            It is at room I.11B on every Thursday.
+            <span aria-label="Source 1">[1]</span>
+          </p>
+
+          <section class="sources" aria-labelledby="sources-heading">
+            <h2 id="sources-heading">Sources</h2>
+            <ol>
+              <li>
+                <strong>Computational Thinking Course Schedule</strong>
+                <span class="source-detail">
+                  Theory class location and weekly timetable
+                </span>
+              </li>
+            </ol>
+          </section>
+        </div>
       </div>
     </section>
 
@@ -139,7 +252,7 @@
           id="question"
           name="question"
           type="text"
-          placeholder="For example: Where is the Training Office?"
+          placeholder="Where is the Computational Thinking theory class?"
           aria-describedby="placeholder-status"
         >
 

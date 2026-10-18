@@ -10,6 +10,7 @@ The placeholder demonstrates:
 - A text input for the user's question.
 - A Send button.
 - An area where the assistant's response will appear.
+- A source section directly below the response.
 - Accessible labels for interactive elements.
 
 Open `ui/index.html` in a web browser to view the placeholder.
@@ -21,6 +22,7 @@ Open `ui/index.html` in a web browser to view the placeholder.
 3. The backend processes the question.
 4. The backend returns a text response.
 5. The UI displays the response in the conversation area.
+6. The UI displays any source metadata directly below that response.
 
 ## Backend integration
 
@@ -33,6 +35,8 @@ answer = reply(user_message)
 ```
 
 The UI must call `reply()` instead of reading the CSV data directly. This keeps presentation logic in the UI and response logic in the backend.
+
+The current `reply()` function returns only answer text. A later backend update will also provide source metadata. The UI will render that metadata using the numbered design in `docs/ui-sources.md`; it will not inspect `data/offices.csv` directly.
 
 A future Streamlit implementation could use:
 
@@ -58,10 +62,12 @@ if user_message:
 - `ui/index.html` — current static placeholder page.
 - `ui/README.md` — UI architecture and integration plan.
 - `docs/ui-chat-placeholder.md` — mockup and design notes.
+- `docs/ui-sources.md` — source and citation display design.
 
 ## Future work
 
 - Replace the static page with a Streamlit application.
+- Connect the source display to metadata returned by the backend.
 - Add loading and error states.
 - Add conversation history.
 - Add automated tests for the interactive UI.
