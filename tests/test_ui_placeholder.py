@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 UI_PAGE = ROOT / "ui" / "index.html"
 UI_README = ROOT / "ui" / "README.md"
